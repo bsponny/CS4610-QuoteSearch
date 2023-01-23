@@ -1,6 +1,29 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 2rem;
+	text-align: center;
 }
+
+input {
+	width: 25em;
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+}
+
+.header {
+	text-align: center;
+}
+
+.randQuote {
+	font-family: 'Brush Script MT', cursive;
+	font-size: 2em;
+}
+
+button {
+	border-radius: 10px;
+	border-width: 2px;
+	border-style: solid;
+}
+

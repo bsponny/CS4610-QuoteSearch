@@ -2,15 +2,23 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 
-function App() {
-	const [count, setCount] = useState(0)
+interface Quote {
+	id: number;
+	quote: string;
+	speaker: string;
+}
 
+function App() {
 	return (
 		<div className="App">
-			<h1>Quote Search</h1>
-			<form>
-				<input type="text"></input>
-			</form>
+			<div class="header">
+				<h1>Quote Search</h1>
+				<input type="text" id="speaker"></input>
+				<button>Search</button>
+			</div>
+			<div>
+				<p class="randQuote">Random Quote</p>
+			</div>
 		</div>
 	)
 }
