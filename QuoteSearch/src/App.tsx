@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, useEffect } from 'react';
 import './App.css'
 
 interface Quote {
@@ -9,15 +8,31 @@ interface Quote {
 }
 
 function App() {
+	const [quote, setQuote] = useState<Quote[]>([]);
+	const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
+	
+	useEffect(() => {
+		loadRandomQuote()
+	}, []);
+
+	async function loadRandomQuote() {
+		const result = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
+		const quote = await result.json();
+		console.log(quote);
+		setRandomQuote(quote);
+	}
+
 	return (
 		<div className="App">
-			<div class="header">
+			<div className="header">
 				<h1>Quote Search</h1>
-				<input type="text" id="speaker"></input>
-				<button>Search</button>
+				<form>
+					<input type="text" id="speaker"></input>
+				</form>
 			</div>
-			<div>
-				<p class="randQuote">Random Quote</p>
+			<div className="results">
+				<p className="randQuote">"{if (randomQuote != null) {randomQuote.content}}"</p>
+				<p className="randAuthor">-{randomQuote.author}</p>
 			</div>
 		</div>
 	)

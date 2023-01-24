@@ -7,9 +7,10 @@
 
 input {
 	width: 25em;
-	border-radius: 10px;
+	border-radius: 7px;
 	border-width: 2px;
 	border-style: solid;
+	font-size: 1em;
 }
 
 .header {
@@ -21,9 +22,8 @@ input {
 	font-size: 2em;
 }
 
-button {
-	border-radius: 10px;
-	border-width: 2px;
-	border-style: solid;
+.randAuthor {
+	font-family: 'Brush Script MT', cursive;
+	font-size: 1.5em;
+	text-align: right;
 }
-
