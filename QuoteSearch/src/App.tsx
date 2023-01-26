@@ -1,29 +1,24 @@
-import { useState, useEffect } from 'react';
-import './App.css'
-
-interface Quote {
-	id: number;
-	quote: string;
-	speaker: string;
-}
+import { useState, useEffect, ChangeEvent, KeyDownEvent } from 'react';
+import './App.css';
+import { RandomQuote } from './pages/RandomQuote';
+import { Search } from './pages/Search';
 
 function App() {
-	const [quotes, setQuotes] = useState<Quote[]>([]);
-	const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
-	
-	useEffect(() => {
-		loadRandomQuote()
-	}, []);
+	const [pageName, setPageName] = useState("random");
+	const [searchQuery, setSearchQuery] = useState("");
 
-	async function loadRandomQuote() {
-		const result = await fetch("https://usu-quotes-mimic.vercel.app/api/random");
-		const quote = await result.json();
-		console.log(quote);
-		if (quote.author === "") {
-			quote.author = "Unknown"
-			// unknown quote id: c487uq author is also '' 
+	function handleChange(e: ChangeEvent<HTMLInputElement>){
+		setSearchQuery(e.target.value);
+		if (e.target.value === ""){
+			setPageName("random");
 		}
-		setRandomQuote(quote);
+	}
+
+	function handleKeyDown(e: KeyDownEvent<HTMLInputElement>){
+		if (e.key === "Enter"){
+			setPageName("search");
+			e.preventDefault();
+		}
 	}
 
 	return (
@@ -33,17 +28,17 @@ function App() {
 				<form>
 					<input 
 						type="text" 
-						id="speaker" 
+						value={searchQuery}
 						placeholder="Albert Einstein"
+						onChange={handleChange}
+						onKeyDown={handleKeyDown}
 					></input>
 				</form>
 			</div>
-			<div className="results">
-				{randomQuote && <p className="randQuote">"{randomQuote.content}"</p>}
-				{randomQuote && <p className="randAuthor">-{randomQuote.authorSlug}</p>}
-			</div>
+			{pageName === "random" && <RandomQuote />}
+			{pageName === "search" && <Search author={searchQuery} />}
 		</div>
-	)
+	);
 }
 
 export default App
