@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../App.css';
+import '../index.css';
 import { QuoteBox } from '../components/QuoteBox';
 
 interface Quote {
@@ -16,7 +16,7 @@ export const Search = (author) => {
 	}, []);
 
 	async function searchQuotes(author){
-		const result = await fetch("https://usu-quotes-mimic.vercel.app/api/search?query=" + author);
+		const result = await fetch("https://usu-quotes-mimic.vercel.app/api/search?query=" + author.author);
 		const quotesJson = await result.json();
 		const quotes = quotesJson.results;
 		const quoteList = [];

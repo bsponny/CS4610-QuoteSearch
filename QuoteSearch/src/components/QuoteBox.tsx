@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import "../App.css";
+import "../index.css";
 
 export const QuoteBox = ({quote, author}) => {
 	return (

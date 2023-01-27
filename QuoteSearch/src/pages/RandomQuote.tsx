@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import '../App.css';
+import '../index.css';
 
 export const RandomQuote = () => {
 	const [randomQuote, setRandomQuote] = useState<Quote | null>(null);
