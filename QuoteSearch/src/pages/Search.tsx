@@ -25,7 +25,7 @@ export const Search = (author) => {
 				quotes[i].author = "";
 			}
 			const quote: Quote = {
-				id: quotes[i].id,
+				id: quotes[i]._id,
 				quote: quotes[i].content,
 				author: quotes[i].author,
 			}
@@ -38,7 +38,7 @@ export const Search = (author) => {
 		<div className="results">
 			{
 				quotes.map((quote) => (
-					<QuoteBox quote={quote.quote} author={quote.author} />
+					<QuoteBox key={quote.id} quote={quote.quote} author={quote.author} />
 				))
 			}
 		</div>
