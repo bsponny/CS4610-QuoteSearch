@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, KeyDownEvent } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import './index.css';
 import { RandomQuote } from './pages/RandomQuote';
 import { Search } from './pages/Search';
@@ -16,14 +16,6 @@ function App() {
 		}
 	}
 
-	function handleKeyDown(e: KeyDownEvent<HTMLInputElement>){
-		if (e.key === "Enter"){
-			setPageName("search");
-			setContClass("");
-			e.preventDefault();
-		}
-	}
-
 	return (
 		<div className="container">
 			<div className={contClass}>
@@ -35,7 +27,14 @@ function App() {
 							value={searchQuery}
 							placeholder="Albert Einstein"
 							onChange={handleChange}
-							onKeyDown={handleKeyDown}
+							onKeyPress={(e) => {
+								if (e.key === "Enter"){
+									setPageName("search");
+									setContClass("");
+									e.preventDefault();
+								}
+							}
+							}
 						></input>
 					</form>
 				</div>

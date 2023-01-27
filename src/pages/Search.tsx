@@ -8,14 +8,14 @@ interface Quote {
 	author: string;
 }
 
-export const Search = (author) => {
+export const Search = (author: any) => {
 	const [quotes, setQuotes] = useState<Quote[]>([]);
 
 	useEffect(() => {
 		searchQuotes(author);
 	}, []);
 
-	async function searchQuotes(author){
+	async function searchQuotes(author: any){
 		const result = await fetch("https://usu-quotes-mimic.vercel.app/api/search?query=" + author.author);
 		const quotesJson = await result.json();
 		const quotes = quotesJson.results;
